@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalendarz Adwentowy – Wybór poziomu</title>
+    <style>
+      body {
+        background: #400000;
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Quicksand, sans-serif;
+        overflow-x: hidden;
+        color: #d2f1ff;
+        padding: clamp(1rem, 3vw, 2.5rem);
+        box-sizing: border-box;
+      }
+      .main-wrapper {
+        background: radial-gradient(circle at center, #99000027, #4000002e);
+
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid #d2f1ff36;
+        border-radius: 20px;
+        padding: clamp(1.75rem, 4vw, 3rem);
+        margin: clamp(1rem, 4vw, 2.5rem) auto;
+        box-shadow: #00000069;
+        text-align: center;
+        width: 100%;
+        max-width: 1000px;
+        z-index: 10;
+        view-transition-name: main-card;
+        animation: fade-in-up 0.8s ease-out forwards;
+      }
+
+      .header-title {
+        font-family: "Papyrus", "Comic Sans MS", Arial;
+        color: #fff9e6;
+        font-size: 8vw;
+
+        text-shadow: 0 0 10px rgba(255, 220, 150, 0.7),
+          0 0 20px rgba(255, 150, 100, 0.4);
+        margin-bottom: 10px;
+      }
+
+      .buttons {
+        display: grid;
+        grid-template-columns: repeat(
+          2,
+          1fr
+        ); /* domyślnie 2 przyciski obok siebie */
+        gap: 20px;
+        margin-bottom: 20px;
+
+        justify-items: center;
+      }
+
+      /* Aby telefony nie robiły zoom-out */
+      @viewport {
+        width: device-width;
+      }
+
+      /* TELEFONY – jeden przycisk w rzędzie */
+      @media (max-width: 700px) {
+        body {
+          padding: 1rem;
+          justify-content: flex-start; /* nie rozciąga w górę */
+        }
+        .topbar-badge h2 {
+          font-size: 1.1rem;
+        }
+
+        .main-wrapper {
+          margin-top: 2rem;
+          padding: 2rem 1rem;
+        }
+
+        .buttons {
+          grid-template-columns: 1fr; /* jeden w linii */
+          gap: 15px;
+          width: 100%;
+        }
+
+        .bnt-level {
+          width: 100%;
+          min-height: 110px;
+          font-size: 1.3rem;
+        }
+
+        .bnt-icon {
+          font-size: 2.2rem;
+        }
+      }
+      .bnt-level:hover {
+        transform: scale(1.05); /* powiększenie */
+        background: #520000;
+      }
+
+      .bnt-level {
+        position: relative;
+        background: #520000cc;
+        color: #ffffffd3;
+        border: none;
+        border-radius: 15px;
+        padding: clamp(1rem, 2.6vw, 1.5rem);
+        font-family: "Papyrus", "Comic Sans MS", Arial;
+        font-weight: 700;
+        font-size: clamp(1.1rem, 2.5vw, 1.2rem);
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        overflow: hidden;
+        min-height: clamp(110px, 24vw, 140px);
+        box-shadow: 0 4px 6px #0003;
+        text-decoration: none;
+        width: 100%;
+      }
+
+      .bnt-level.podstawa {
+        border-bottom: 8px solid #0b550dda;
+      }
+
+      .bnt-level.rozszerzenie {
+        border-bottom: 8px solid #194365ca;
+      }
+
+      .bnt-level._8klasa {
+        border-bottom: 8px solid #ffe28c96;
+      }
+
+      .bnt-level.zagadki {
+        border-bottom: 8px solid #bc1010c2;
+      }
+
+      .bnt-icon {
+        font-size: clamp(2rem, 6vw, 2.5rem);
+        transition: transform 0.3s ease;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+        color: #ffffff;
+        font-family: "Papyrus", "Comic Sans MS", Arial;
+        margin-top: 40px;
+        font-size: min(6vw, 60px);
+      }
+      .snowflake {
+        position: fixed;
+        top: -10px;
+        color: white;
+        pointer-events: none; /* nie blokuje kliknięć */
+        user-select: none;
+        z-index: 1;
+        animation: linear infinite snowfall;
+      }
+
+      /* h2 {
+        text-align: center;
+        font-family: "Papyrus", Arial;
+        font-size: 16px;
+        font-weight: bold;
+      } */
+
+      .topbar-badge {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translate(-50%);
+        background: radial-gradient(circle at center, #610000, #400000);
+        font-family: "Papyrus";
+        padding: 0px 20px;
+        padding-top: 5px;
+        border-radius: 30px;
+        font-weight: 700;
+
+        font-size: 0.9rem;
+        box-shadow: 0 4px 10px #0000004d;
+        white-space: nowrap;
+        z-index: 20;
+      }
+
+      @keyframes snowfall {
+        to {
+          transform: translateY(110vh);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main-wrapper">
+      <div class="topbar-badge"><h2>Matematyczny Kalendarz Adwentowy</h2></div>
+      <h1>WYBIERZ POZIOM</h1>
+      <div class="buttons">
+        <button
+          class="bnt-level podstawa"
+          onclick="location.href='podstawa.html'"
+        >
+          <span class="bnt-icon">📚</span>
+          PODSTAWA
+        </button>
+        <button
+          class="bnt-level rozszerzenie"
+          onclick="location.href='rozszerzenie.html'"
+        >
+          <span class="bnt-icon">🧮</span>
+          ROZSZERZENIE
+        </button>
+
+        <button
+          class="bnt-level _8klasa"
+          onclick="location.href='8_klasa.html'"
+        >
+          <span class="bnt-icon">🍀</span>
+          8 KLASA
+        </button>
+        <button
+          class="bnt-level zagadki"
+          onclick="location.href='zagadki.html'"
+        >
+          <span class="bnt-icon">🎲</span>
+          ZAGADKI
+        </button>
+      </div>
+    </div>
+    <script>
+      // === Płatki śniegu ===
+      document.addEventListener("DOMContentLoaded", () => {
+        const numberOfFlakes = 50
+
+        for (let i = 0; i < numberOfFlakes; i++) {
+          const flake = document.createElement("div")
+          flake.classList.add("snowflake")
+
+          flake.style.left = Math.random() * 100 + "vw"
+          flake.style.animationDuration = 4 + Math.random() * 6 + "s"
+          flake.style.animationDelay = Math.random() * 3 + "s"
+          flake.style.opacity = 0.3 + Math.random() * 0.7
+          flake.style.fontSize = 10 + Math.random() * 20 + "px"
+
+          flake.textContent = "❄"
+          document.body.appendChild(flake)
+        }
+      })
+    </script>
+  </body>
+</html>
