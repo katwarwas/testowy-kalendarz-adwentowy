@@ -1,114 +1,11 @@
 <!DOCTYPE html>
 <html lang="pl">
   <head>
-   
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kalendarz Adwentowy – 8 klasa</title>
+    <link rel="stylesheet" href="style.css" />
     <style>
-      body {
-        background: #400000;
-        /* background: radial-gradient(circle at center, #990000, #400000); */
-        min-height: 100vh;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: Quicksand, sans-serif;
-        overflow-x: hidden;
-        color: #d2f1ff;
-        padding: clamp(1rem, 3vw, 2.5rem);
-        box-sizing: border-box;
-      }
-     
-      @media (max-width: 700px) {
-  body {
-    padding: 1rem;
-    justify-content: flex-start;
-  }
-
-  .main-wrapper {
-    padding: 1.5rem 1rem;
-    margin-top: 2rem;
-    min-height: auto;   /* to jest KLUCZ */
-  }
-
-  .topbar-badge h2 {
-    font-size: 1.1rem;
-  }
-
-  h3 {
-    font-size: 1rem;
-  }
-
-  .card {
-    width: 90vw;
-    max-width: 350px;
-    aspect-ratio: 1/1;
-  }
-
-  .day-number {
-    font-size: 22vw;   /* skaluje się idealnie na każdym telefonie */
-  }
-
-  button h2 {
-    font-size: 0.9rem;
-  }
-
-  button {
-    padding: 12px 20px;
-    font-size: 1.2rem;
-  }
-}
-
-      h3 {
-        text-align: center;
-        font-family: "Papyrus", Arial;
-        font-size: 16px;
-        font-weight: 400;
-      }
-      .main-wrapper {
-        background: radial-gradient(circle at center, #99000027, #4000002e);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid #d2f1ff36;
-        border-radius: 20px;
-        padding: clamp(1.75rem, 4vw, 3rem);
-        margin: clamp(1rem, 4vw, 2.5rem) auto;
-        box-shadow: #00000069;
-        text-align: center;
-        width: 100%;
-        max-width: 900px;
-        min-height: min(720px, 85vh);
-        height: auto;
-        display: flex;
-        z-index: 2;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: clamp(1rem, 2vw, 2rem);
-        view-transition-name: main-card;
-        animation: fade-in-up 0.8s ease-out forwards;
-      }
-
-      .topbar-badge {
-        position: absolute;
-        top: -20px;
-        left: 50%;
-        transform: translate(-50%);
-        background: radial-gradient(circle at center, #610000, #400000);
-        font-family: "Papyrus";
-        padding: 0px 20px;
-        padding-top: 5px;
-        border-radius: 30px;
-        font-weight: 700;
-
-        font-size: 0.9rem;
-        box-shadow: 0 4px 10px #0000004d;
-        white-space: nowrap;
-        z-index: 20;
-      }
-
       button {
         background: radial-gradient(circle at center, #610000, #400000);
 
@@ -192,8 +89,10 @@
   </head>
 
   <body>
-    <div class="main-wrapper">
-      <div class="topbar-badge"><h2>Matematyczny Kalendarz Adwentowy</h2></Matematyczny></div>
+    <div class="main-wrapper poziom">
+      <div class="topbar-badge">
+        <h2>Matematyczny Kalendarz Adwentowy Matematyczny</h2>
+      </div>
 
       <div class="card" onclick="flipCard()">
         <div class="inner" id="photoCard">
@@ -204,15 +103,23 @@
         </div>
       </div>
       <h3>Kliknij w kartę, aby zobaczyć zadanie</h3>
-      <button onclick="goHome()"><h2>POWRÓT</h2></button>
+      <button class="poziom" onclick="goHome()"><h2>POWRÓT</h2></button>
     </div>
+    <footer class="footer">
+      <div class="footer-content">
+        <span
+          >© 2025 Matematyczny Kalendarz Adwentowy Created by
+          <strong>KatWarwas</strong> 🎄</span
+        >
+      </div>
+    </footer>
 
     <script>
       const folder = "8_klasa"
 
       // === USTALAMY DZIEŃ GRUDNIA ===
       const today = new Date()
-      let day = today.getMonth() === 11 ? today.getDate() : "24"
+      let day = today.getMonth() === 11 ? today.getDate() : "x"
       if (day < 1) day = 1
       if (day > 24) day = 24
 
