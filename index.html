@@ -86,7 +86,8 @@ const NAMESPACE = "katwarwass-team-1897";
 fetch(`https://api.counterapi.dev/v2/${NAMESPACE}/${COUNTER_NAME}/up`, {
     method: "POST",
     headers: {
-        "Authorization": `Bearer ${API_TOKEN}`
+        "Authorization": `Bearer ${API_TOKEN}`,
+        "Content-Type": "application/json"
     }
 });
 </script>
