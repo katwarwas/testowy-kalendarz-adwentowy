@@ -84,7 +84,7 @@ const COUNTER_NAME = "first-counter-1897";
 const NAMESPACE = "katwarwass-team-1897";
 
 fetch(`https://api.counterapi.dev/v2/${NAMESPACE}/${COUNTER_NAME}/up`, {
-    method: "GET",
+    method: "POST",
     headers: {
         "Authorization": `Bearer ${API_TOKEN}`
     }
