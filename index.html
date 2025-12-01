@@ -6,7 +6,7 @@
     <title>Kalendarz Adwentowy – Wybór poziomu</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-<img src="https://api.countapi.xyz/hit/MatematycznyKalendarzAdwentowy/licznik" style="display:none;">
+
   <body>
     <div class="main-wrapper">
       <div class="topbar-badge"><h2>Matematyczny Kalendarz Adwentowy</h2></div>
@@ -78,5 +78,17 @@
         }
       })
     </script>
+    <script>
+const API_TOKEN = "ut_7RVxU6Vg1nLvdZlumLoyR2nqQDU2fmAWkyS8SUX4";
+const COUNTER_NAME = "first-counter-1897";
+const NAMESPACE = "katwarwass-team-1897";
+
+fetch(`https://api.counterapi.dev/v2/${NAMESPACE}/${COUNTER_NAME}/up`, {
+    method: "GET",
+    headers: {
+        "Authorization": `Bearer ${API_TOKEN}`
+    }
+});
+</script>
   </body>
 </html>
